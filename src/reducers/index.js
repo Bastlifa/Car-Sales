@@ -23,7 +23,7 @@ export const reducer = (state = initialState, action) =>
     switch(action.type)
     {
         case ADD_FEATURE:
-            if(state.car.features.map(el => el.id).includes(action.payload.id)) return state
+            // if(state.car.features.map(el => el.id).includes(action.payload.id)) return state
             return {
                 ...state, 
                 additionalPrice: state.additionalPrice + action.payload.price,
@@ -31,7 +31,8 @@ export const reducer = (state = initialState, action) =>
                 {
                     ...state.car, 
                     features: [...state.car.features, action.payload]
-                }
+                },
+                store: state.store.filter(el => ![...state.car.features.map(el => el.id), action.payload.id].includes(el.id ))
             }
         case REMOVE_FEATURE:
             return {
@@ -41,7 +42,8 @@ export const reducer = (state = initialState, action) =>
                 {
                     ...state.car, 
                     features: state.car.features.filter(el => el.id !== action.payload.id)
-                }
+                },
+                store: [...state.store, action.payload]
             }
         default:
             return state

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 const Header = props => {
   return (
     <>
-      <figure className="image is-128x128">
+      <figure className="image is-200x200">
         <img src={props.image} alt={props.name} />
       </figure>
       <h2>{props.name}</h2>
@@ -22,4 +22,4 @@ const mapStateToProps = state =>
   }
 }
 
-export default connect(mapStateToProps, {})(Header)
+export default connect(mapStateToProps, {})(Header) 
